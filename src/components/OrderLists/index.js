@@ -44,6 +44,7 @@ class OrderLists extends Component {
       <ToggleChanges.Consumer>
         {value => {
           const {SavedList} = value
+          console.log(SavedList)
 
           let cartItems = []
           const CartItem = localStorage.getItem('cartData')
