@@ -11,11 +11,6 @@ import ToggleChanges from './Context/ToggleChanges'
 import ProtectedRoute from './components/ProtectedRoute'
 
 const getDataFromLS = JSON.parse(localStorage.getItem('cartData'))
-console.log(getDataFromLS, 'lsg')
-
-// if (getDataFromLS === []) {
-//   getDataFromLS = []
-// }
 
 class App extends Component {
   state = {activeRating: '', SavedList: getDataFromLS, count: 0}
