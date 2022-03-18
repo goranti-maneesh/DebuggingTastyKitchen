@@ -1,0 +1,10 @@
+.bg-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons {
+  width: 10px;
+  border-color: lightslategray;
+  border-style: 1px;
+}

@@ -1,0 +1,28 @@
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.pages-name {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  color: #475569;
+  margin-right: 75px;
+}
+
+.logout-button {
+  /* width: 8vh;
+  height: 3vh; */
+  background-color: #f7931e;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  font-family: DM Sans;
+  margin-top: 3px;
+  margin-right: 20px;
+  padding-top: 0px;
+}
