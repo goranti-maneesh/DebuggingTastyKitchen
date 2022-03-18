@@ -33,7 +33,8 @@ const OrderListsDetails = props => (
         removeCartItem,
       } = value
       const {eachOrderList, onUpdatedCount} = props
-      console.log(props, 'props')
+
+      // console.log(props, 'props')
 
       const {id, imageUrl, name, count, cost} = eachOrderList
       const nameLength = name.length === 15
@@ -41,9 +42,11 @@ const OrderListsDetails = props => (
       const onClickDecrement = () => {
         decrementCartItemQuantity(id)
       }
+
       const onClickIncrement = () => {
         incrementCartItemQuantity(id)
       }
+
       const onRemoveItem = () => {
         removeCartItem(id)
       }
@@ -66,12 +69,13 @@ const OrderListsDetails = props => (
               <CountButton type="button" onClick={onClickDecrement}>
                 -
               </CountButton>
-              <CountNumber>{count + 1}</CountNumber>
+              <CountNumber>{count}</CountNumber>
               <CountButton type="button" onClick={onClickIncrement}>
                 +
               </CountButton>
             </CountContainer>
-            <OrderListPrice>₹{cost * (count + 1)}.00</OrderListPrice>
+            {console.log(cost, count, cost * count)}
+            <OrderListPrice>₹{cost * count}.00</OrderListPrice>
             <RemoveContainer type="button" onClick={onRemoveItem}>
               <CgRemove size="20" color="red" />
             </RemoveContainer>
@@ -85,12 +89,12 @@ const OrderListsDetails = props => (
                 <CountButtonSm type="button" onClick={onClickDecrement}>
                   -
                 </CountButtonSm>
-                <CountNumberSm>{count + 1}</CountNumberSm>
+                <CountNumberSm>{count}</CountNumberSm>
                 <CountButtonSm type="button" onClick={onClickIncrement}>
                   +
                 </CountButtonSm>
               </CountContainerSm>
-              <OrderListPriceSm>₹{cost * (count + 1)}.00</OrderListPriceSm>
+              <OrderListPriceSm>₹{cost * count}.00</OrderListPriceSm>
             </OrderListSm>
           </OrderListSubContainerSm>
         </OrderListBg>

@@ -23,7 +23,11 @@ class RestaurantDetails extends Component {
     return (
       <ToggleChanges.Consumer>
         {value => {
-          const {addToSavedList, onUpdatedCount} = value
+          const {
+            addToSavedList,
+            onUpdatedCount,
+            decrementCartItemQuantity,
+          } = value
           const {eachRestaurantDetails} = this.props
           const {count} = this.state
 
@@ -32,7 +36,8 @@ class RestaurantDetails extends Component {
           const nameLength = name.length === 15
 
           const onAddToList = () => {
-            addToSavedList({...eachRestaurantDetails, count})
+            const newCount = 1
+            addToSavedList({...eachRestaurantDetails, count: newCount})
 
             this.setState(prevState => ({
               count: prevState.count + 1,
@@ -45,8 +50,8 @@ class RestaurantDetails extends Component {
             }))
 
             cartData.push({...eachRestaurantDetails, count})
-            console.log({...eachRestaurantDetails, count}, cartData, 'cartData')
-            localStorage.setItem('cartData', JSON.stringify(cartData))
+            // console.log({...eachRestaurantDetails, count}, cartData, 'cartData')
+            /* localStorage.setItem('cartData', JSON.stringify(cartData)) */
 
             addToSavedList({...eachRestaurantDetails, count})
             onUpdatedCount(count)
@@ -57,10 +62,13 @@ class RestaurantDetails extends Component {
               this.setState(prevState => ({
                 count: prevState.count - 1,
               }))
-              localStorage.setItem('cartData', JSON.stringify(cartData))
+              /* localStorage.setItem('cartData', JSON.stringify(cartData))
               addToSavedList({...eachRestaurantDetails, count})
+               */
+
+              decrementCartItemQuantity(eachRestaurantDetails.id)
+              onUpdatedCount(count)
             }
-            onUpdatedCount(count)
           }
 
           return (

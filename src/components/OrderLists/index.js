@@ -44,15 +44,17 @@ class OrderLists extends Component {
       <ToggleChanges.Consumer>
         {value => {
           const {SavedList} = value
-          console.log(SavedList, 'savedList')
 
+          let cartItems = []
           const CartItem = localStorage.getItem('cartData')
-          const cartItems = JSON.parse(CartItem)
-          console.log(cartItems)
+
+          if (CartItem !== null) {
+            cartItems = JSON.parse(CartItem)
+          }
 
           let totalCost = 0
           SavedList.forEach(eachCartItem => {
-            totalCost += eachCartItem.cost * (eachCartItem.count + 1)
+            totalCost += eachCartItem.cost * eachCartItem.count
           })
 
           const removeCartList = () => {
@@ -66,7 +68,7 @@ class OrderLists extends Component {
             history.replace('/orderSuccess')
             SavedList.length = 0
           }
-
+          // console.log(cartItems.length, 'length')
           const CartLength = cartItems.length === 0
 
           return (
@@ -102,6 +104,7 @@ class OrderLists extends Component {
                     </OrderListContainer>
                     {cartItems.map(eachOne => (
                       <OrderListsDetails
+                        key={eachOne.id}
                         eachOrderList={eachOne}
                         cost={eachOne.cost}
                         id={eachOne.id}

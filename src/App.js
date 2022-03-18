@@ -17,6 +17,11 @@ class App extends Component {
     this.setState({activeRating})
   }
 
+  setSavedDataInLocalStorage = () => {
+    const {SavedList} = this.state
+    localStorage.setItem('cartData', JSON.stringify(SavedList))
+  }
+
   addToSavedList = Food => {
     const {SavedList} = this.state
     //  localStorage.setItem('cartData', JSON.stringify(Food))
@@ -58,16 +63,25 @@ class App extends Component {
   decrementCartItemQuantity = id => {
     const {SavedList} = this.state
     const productObject = SavedList.find(eachFoodItem => eachFoodItem.id === id)
-    if (productObject.count >= 1) {
-      this.setState(prevState => ({
-        SavedList: prevState.SavedList.map(eachFoodItem => {
-          if (id === eachFoodItem.id) {
-            const updatedQuantity = eachFoodItem.count - 1
-            return {...eachFoodItem, count: updatedQuantity}
-          }
-          return eachFoodItem
-        }),
-      }))
+    // console.log(productObject)
+    if (productObject !== undefined) {
+      if (productObject.count >= 2) {
+        this.setState(prevState => ({
+          SavedList: prevState.SavedList.map(eachFoodItem => {
+            if (id === eachFoodItem.id) {
+              const updatedQuantity = eachFoodItem.count - 1
+              //   console.log(updatedQuantity, 'updatedQuantity')
+              return {...eachFoodItem, count: updatedQuantity}
+            }
+            return eachFoodItem
+          }),
+        }))
+      } else {
+        const objIndex = SavedList.indexOf(productObject)
+        // console.log(objIndex)
+        SavedList.splice(objIndex, 1)
+        this.setState(SavedList)
+      }
     }
   }
 
@@ -92,6 +106,7 @@ class App extends Component {
 
   render() {
     const {activeRating, SavedList, count} = this.state
+    this.setSavedDataInLocalStorage()
     // localStorage.setItem('cartData', JSON.stringify(SavedList))
 
     return (
