@@ -78,11 +78,6 @@ class App extends Component {
             return eachFoodItem
           }),
         }))
-      } else {
-        const objIndex = SavedList.indexOf(productObject)
-        // console.log(objIndex)
-        SavedList.splice(objIndex, 1)
-        this.setState(SavedList)
       }
     }
   }
